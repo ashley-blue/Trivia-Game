@@ -5,11 +5,13 @@ var incorrect = 0;
 var myAnswer = 0;
 var questionAnswer = 0;
 var counter = 30;
+var timer;
 
 
 $("#start").click(function () {
 
     chooseQuestion();
+    timerWrapper ();
 
 });
 
@@ -100,11 +102,17 @@ function checkAnswer(){
 
 }
 
-//need to complete timer
+function timerWrapper() {
+    theClock = setInterval(thirtySeconds, 1000);
+    function thirtySeconds() {
+        if (counter === 0) {
+            clearInterval(theClock);
+            timeoutLoss();
+        }
+        if (counter > 0) {
+            counter--;
+        }
+        $("#timer").html(counter);
+    }
+};
 
-var interval = setInterval(function () {
-    counter--;
-    if(counter <= 0) {
-        clearInterval(interval);
-        $('#timer').html("<h3>Time is up!</h3>");
-} 1000});
